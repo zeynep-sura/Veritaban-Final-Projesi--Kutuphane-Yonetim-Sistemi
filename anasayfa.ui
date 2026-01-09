@@ -1,0 +1,1994 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>anamenu</class>
+ <widget class="QMainWindow" name="anamenu">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1610</width>
+    <height>805</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">/* ================================================
+   1. GENEL PENCERE AYARLARI
+   ================================================ */
+QMainWindow, QWidget#centralwidget {
+    background-color: #f4f6f9; /* Daha ferah, modern bir kırık beyaz */
+    font-family: 'Segoe UI', sans-serif;
+}
+
+/* ================================================
+   2. SOL MENÜ (Senin kodun + ufak dokunuşlar)
+   ================================================ */
+#frame_menu {
+    background-color: #0b3b29; 
+    border-right: 1px solid #082e20;
+}
+
+/* SADECE Sol Menüdeki Butonlar İçin Ayarlar */
+#frame_menu QPushButton {
+    background-color: transparent;
+    color: #ecf0f1;
+    text-align: left;
+    padding-left: 20px;
+    height: 45px;
+    border: none;
+    font-size: 14px;
+    font-weight: 500;
+    border-left: 4px solid transparent;
+}
+
+/* Sol Menü Butonlarına Mouse ile Gelince */
+#frame_menu QPushButton:hover {
+    background-color: #145a3d;
+    color: white;
+    border-left: 4px solid #2ecc71; /* Sol taraftaki açık yeşil çizgi */
+}
+
+/* Çıkış Butonu Özelleştirmesi */
+#btn_cikis {
+    margin-top: 20px;
+}
+#btn_cikis:hover {
+    background-color: #8e2a2a;
+    border-left: 4px solid #e74c3c;
+}
+
+/* ================================================
+   3. SAĞ TARAFTAKİ İŞLEM BUTONLARI (Ekle, Sil, Güncelle)
+   ================================================ */
+/* Menü haricindeki diğer tüm butonlar (Yeşil, kutu şeklinde) */
+QPushButton {
+    background-color: #145240; /* Senin ana yeşilin */
+    color: white;
+    border-radius: 6px;
+    padding: 8px 15px;
+    font-weight: bold;
+    font-size: 13px;
+    border: 1px solid #0b3b29;
+}
+
+QPushButton:hover {
+    background-color: #1e7055; /* Üzerine gelince açılan renk */
+}
+
+QPushButton:pressed {
+    background-color: #0e3b2e; /* Tıklayınca koyulaşan renk */
+}
+
+/* Temizle Butonu (İstersen farklı renk yapabilirsin, şimdilik aynı) */
+#btn_temizle {
+    background-color: #34495e; /* Koyu gri/mavi farklı dursun diye */
+}
+#btn_temizle:hover {
+    background-color: #2c3e50;
+}
+
+/* ================================================
+   4. KUTUCUKLAR (LINE EDIT) - &quot;Boş görünüyor&quot; demiştin
+   ================================================ */
+QLineEdit {
+    background-color: white;
+    border: 1px solid #bdc3c7; /* Gri çerçeve */
+    border-radius: 4px;        /* Hafif yuvarlak köşe */
+    padding: 6px;              /* Yazı ile kenar arası boşluk */
+    color: #2d3436;
+    selection-background-color: #145240;
+}
+
+QLineEdit:focus {
+    border: 2px solid #145240; /* Tıklayınca çerçeve yeşil olsun */
+}
+
+/* ================================================
+   5. TABLO TASARIMI
+   ================================================ */
+QTableWidget {
+    background-color: white;
+    gridline-color: #dfe6e9;
+    border: 1px solid #dfe6e9;
+    font-size: 13px;
+    color: #2d3436;
+}
+
+/* Tablo Başlıkları */
+QHeaderView::section {
+    background-color: #0b3b29; /* Menü ile aynı yeşil */
+    color: white;
+    padding: 8px;
+    border: none;
+    font-weight: bold;
+}</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <property name="spacing">
+     <number>0</number>
+    </property>
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
+     <number>0</number>
+    </property>
+    <item>
+     <widget class="QFrame" name="frame_menu">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <item>
+        <widget class="QPushButton" name="btn_uye">
+         <property name="text">
+          <string>ÜYE BİLGİSİ</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btn_kitap">
+         <property name="text">
+          <string>KİTAPLAR</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btn_odunc">
+         <property name="text">
+          <string>ÖDÜNÇ İŞLEMLERİ</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btn_menu_teslim_al">
+         <property name="text">
+          <string>KİTAP TESLİMİ</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btn_ceza">
+         <property name="text">
+          <string>CEZA BİLGİLERİ</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btn_rapor">
+         <property name="text">
+          <string>RAPOR</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btn_sorgu">
+         <property name="text">
+          <string>SORGU EKRANI</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="verticalSpacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>30</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btn_cikis">
+         <property name="text">
+          <string>ÇIKIŞ</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QFrame" name="frame_icerik">
+      <property name="minimumSize">
+       <size>
+        <width>250</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_4">
+       <item>
+        <widget class="QLabel" name="lbl_baslik">
+         <property name="minimumSize">
+          <size>
+           <width>888</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <family>Ubuntu Sans</family>
+           <pointsize>15</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Hoş geldiniz, Kullanıcı Adı</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QStackedWidget" name="stackedWidget">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>1</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="currentIndex">
+          <number>1</number>
+         </property>
+         <widget class="QWidget" name="page_uye">
+          <layout class="QVBoxLayout" name="verticalLayout_5">
+           <item>
+            <widget class="QLineEdit" name="lne_uye_ara">
+             <property name="maximumSize">
+              <size>
+               <width>500</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="placeholderText">
+              <string>ÜYE ARA</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QTableWidget" name="tbl_uyeler">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>150</height>
+              </size>
+             </property>
+             <property name="alternatingRowColors">
+              <bool>false</bool>
+             </property>
+             <property name="selectionMode">
+              <enum>QAbstractItemView::SingleSelection</enum>
+             </property>
+             <property name="selectionBehavior">
+              <enum>QAbstractItemView::SelectRows</enum>
+             </property>
+             <attribute name="horizontalHeaderCascadingSectionResizes">
+              <bool>true</bool>
+             </attribute>
+             <attribute name="horizontalHeaderDefaultSectionSize">
+              <number>150</number>
+             </attribute>
+             <attribute name="horizontalHeaderHighlightSections">
+              <bool>true</bool>
+             </attribute>
+             <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
+              <bool>true</bool>
+             </attribute>
+             <attribute name="horizontalHeaderStretchLastSection">
+              <bool>true</bool>
+             </attribute>
+             <attribute name="verticalHeaderVisible">
+              <bool>false</bool>
+             </attribute>
+             <attribute name="verticalHeaderCascadingSectionResizes">
+              <bool>true</bool>
+             </attribute>
+             <attribute name="verticalHeaderDefaultSectionSize">
+              <number>40</number>
+             </attribute>
+             <attribute name="verticalHeaderShowSortIndicator" stdset="0">
+              <bool>true</bool>
+             </attribute>
+             <attribute name="verticalHeaderStretchLastSection">
+              <bool>false</bool>
+             </attribute>
+             <column>
+              <property name="text">
+               <string>ID</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>AD</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>SOYAD</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>EMAİL</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>TELEFON</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>BORÇ</string>
+              </property>
+             </column>
+            </widget>
+           </item>
+           <item>
+            <widget class="QFrame" name="frame_2">
+             <property name="minimumSize">
+              <size>
+               <width>450</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>700</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="frameShape">
+              <enum>QFrame::StyledPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Raised</enum>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_3">
+              <item>
+               <widget class="QLineEdit" name="lne_uye_ad">
+                <property name="placeholderText">
+                 <string>AD *</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLineEdit" name="lne_uye_soyad">
+                <property name="placeholderText">
+                 <string>SOYAD *</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLineEdit" name="lne_uye_tel">
+                <property name="placeholderText">
+                 <string>TELEFON</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLineEdit" name="lne_uye_email">
+                <property name="placeholderText">
+                 <string>EMAİL *</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="btn_temizle">
+                <property name="styleSheet">
+                 <string notr="true">QPushButton {
+    background-color: #0e4d3a;  /* Başlıktaki o koyu yeşil tonu */
+    color: white;               /* Yazı rengi beyaz */
+    border-radius: 5px;         /* Köşeleri hafif yuvarla */
+    font-weight: bold;          /* Yazı kalın olsun */
+    border: 1px solid #083628;  /* Etrafında ince bir çizgi */
+    min-height: 40px;           /* Yükseklik garantisi */
+}
+
+QPushButton:hover {
+    background-color: #146c52;  /* Üzerine gelince biraz açılır (Efekt) */
+}
+
+QPushButton:pressed {
+    background-color: #052b20;  /* Tıklayınca koyulaşır */
+}
+</string>
+                </property>
+                <property name="text">
+                 <string>TEMİZLE</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="lbl_secili_uye_id">
+                <property name="font">
+                 <font>
+                  <weight>75</weight>
+                  <bold>true</bold>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>Seçilen Üye: Henüz Seçilmedi</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QFrame" name="frame">
+             <property name="minimumSize">
+              <size>
+               <width>450</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>700</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="frameShape">
+              <enum>QFrame::StyledPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Raised</enum>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_2">
+              <item>
+               <widget class="QPushButton" name="btn_uye_guncelle">
+                <property name="minimumSize">
+                 <size>
+                  <width>100</width>
+                  <height>58</height>
+                 </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <pointsize>-1</pointsize>
+                  <weight>75</weight>
+                  <bold>true</bold>
+                 </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">QPushButton {
+    background-color: #0e4d3a;  /* Başlıktaki o koyu yeşil tonu */
+    color: white;               /* Yazı rengi beyaz */
+    border-radius: 5px;         /* Köşeleri hafif yuvarla */
+    font-weight: bold;          /* Yazı kalın olsun */
+    border: 1px solid #083628;  /* Etrafında ince bir çizgi */
+    min-height: 40px;           /* Yükseklik garantisi */
+}
+
+QPushButton:hover {
+    background-color: #146c52;  /* Üzerine gelince biraz açılır (Efekt) */
+}
+
+QPushButton:pressed {
+    background-color: #052b20;  /* Tıklayınca koyulaşır */
+}</string>
+                </property>
+                <property name="text">
+                 <string>ÜYE GÜNCELLE</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="btn_uye_sil">
+                <property name="styleSheet">
+                 <string notr="true">QPushButton {
+    background-color: #0e4d3a;  /* Başlıktaki o koyu yeşil tonu */
+    color: white;               /* Yazı rengi beyaz */
+    border-radius: 5px;         /* Köşeleri hafif yuvarla */
+    font-weight: bold;          /* Yazı kalın olsun */
+    border: 1px solid #083628;  /* Etrafında ince bir çizgi */
+    min-height: 40px;           /* Yükseklik garantisi */
+}
+
+QPushButton:hover {
+    background-color: #146c52;  /* Üzerine gelince biraz açılır (Efekt) */
+}
+
+QPushButton:pressed {
+    background-color: #052b20;  /* Tıklayınca koyulaşır */
+}</string>
+                </property>
+                <property name="text">
+                 <string>ÜYE SİL</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="btn_uye_ekle">
+                <property name="styleSheet">
+                 <string notr="true">QPushButton {
+    background-color: #0e4d3a;  /* Başlıktaki o koyu yeşil tonu */
+    color: white;               /* Yazı rengi beyaz */
+    border-radius: 5px;         /* Köşeleri hafif yuvarla */
+    font-weight: bold;          /* Yazı kalın olsun */
+    border: 1px solid #083628;  /* Etrafında ince bir çizgi */
+    min-height: 40px;           /* Yükseklik garantisi */
+}
+
+QPushButton:hover {
+    background-color: #146c52;  /* Üzerine gelince biraz açılır (Efekt) */
+}
+
+QPushButton:pressed {
+    background-color: #052b20;  /* Tıklayınca koyulaşır */
+}
+</string>
+                </property>
+                <property name="text">
+                 <string>ÜYE EKLE</string>
+                </property>
+                <property name="iconSize">
+                 <size>
+                  <width>40</width>
+                  <height>40</height>
+                 </size>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="page_kitap">
+          <layout class="QVBoxLayout" name="verticalLayout_9">
+           <item>
+            <widget class="QLineEdit" name="lne_kitap_ara">
+             <property name="placeholderText">
+              <string>KİTAP ADI VEYA YAZAR ARA</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QTableWidget" name="tbl_kitaplar">
+             <property name="selectionMode">
+              <enum>QAbstractItemView::SingleSelection</enum>
+             </property>
+             <property name="selectionBehavior">
+              <enum>QAbstractItemView::SelectRows</enum>
+             </property>
+             <attribute name="horizontalHeaderCascadingSectionResizes">
+              <bool>true</bool>
+             </attribute>
+             <attribute name="horizontalHeaderDefaultSectionSize">
+              <number>150</number>
+             </attribute>
+             <attribute name="horizontalHeaderStretchLastSection">
+              <bool>true</bool>
+             </attribute>
+             <column>
+              <property name="text">
+               <string>ID</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>AD</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>YAZAR</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>KATEGORİ</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>YAYINEVİ</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>YIL</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>STOK</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>MEVCUT</string>
+              </property>
+             </column>
+            </widget>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_2">
+             <item>
+              <widget class="QFrame" name="frame_3">
+               <property name="maximumSize">
+                <size>
+                 <width>600</width>
+                 <height>600</height>
+                </size>
+               </property>
+               <property name="frameShape">
+                <enum>QFrame::StyledPanel</enum>
+               </property>
+               <property name="frameShadow">
+                <enum>QFrame::Raised</enum>
+               </property>
+               <layout class="QVBoxLayout" name="verticalLayout_6">
+                <item>
+                 <widget class="QLineEdit" name="lne_kitap_ad">
+                  <property name="placeholderText">
+                   <string>KİTAP ADI *</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLineEdit" name="lne_kitap_yazar">
+                  <property name="placeholderText">
+                   <string>YAZAR *</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLineEdit" name="lne_kitap_adet">
+                  <property name="placeholderText">
+                   <string>TOPLAM ADET *</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLineEdit" name="lne_kitap_yil">
+                  <property name="placeholderText">
+                   <string>BASIM YILI *</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLineEdit" name="lne_kitap_yayinevi">
+                  <property name="placeholderText">
+                   <string>YAYINEVİ *</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QComboBox" name="cmb_kategori">
+                  <property name="currentText">
+                   <string/>
+                  </property>
+                  <property name="placeholderText">
+                   <string>KATEGORİ SEÇİN</string>
+                  </property>
+                 </widget>
+                </item>
+                <item alignment="Qt::AlignRight">
+                 <widget class="QPushButton" name="btn_kitap_temizle">
+                  <property name="maximumSize">
+                   <size>
+                    <width>100</width>
+                    <height>16777215</height>
+                   </size>
+                  </property>
+                  <property name="text">
+                   <string>TEMİZLE</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QFrame" name="frame_4">
+                  <property name="maximumSize">
+                   <size>
+                    <width>600</width>
+                    <height>400</height>
+                   </size>
+                  </property>
+                  <property name="frameShape">
+                   <enum>QFrame::StyledPanel</enum>
+                  </property>
+                  <property name="frameShadow">
+                   <enum>QFrame::Raised</enum>
+                  </property>
+                  <layout class="QVBoxLayout" name="verticalLayout_7">
+                   <item>
+                    <widget class="QPushButton" name="btn_kitap_ekle">
+                     <property name="text">
+                      <string>KİTAP EKLE</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QPushButton" name="btn_kitap_guncelle">
+                     <property name="text">
+                      <string>KİTAP GÜNCELLE</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QPushButton" name="btn_kitap_sil">
+                     <property name="text">
+                      <string>KİTAP SİL</string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </item>
+             <item>
+              <widget class="QGroupBox" name="groupBox">
+               <property name="maximumSize">
+                <size>
+                 <width>350</width>
+                 <height>200</height>
+                </size>
+               </property>
+               <property name="title">
+                <string/>
+               </property>
+               <layout class="QVBoxLayout" name="verticalLayout_8">
+                <item>
+                 <widget class="QLineEdit" name="lne_yeni_kategori">
+                  <property name="placeholderText">
+                   <string>YENİ KATEGORİ ADI</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="btn_kat_ekle">
+                  <property name="text">
+                   <string>KATEGORİ EKLE</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="btn_kat_guncelle">
+                  <property name="text">
+                   <string>SEÇİLİ KATEGORİYİ GÜNCELLE</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="btn_kat_sil">
+                  <property name="text">
+                   <string>SEÇİLİ KATEGORİYİ SİL</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="page_odunc">
+          <layout class="QVBoxLayout" name="verticalLayout_12">
+           <item>
+            <widget class="QFrame" name="frame_7">
+             <property name="frameShape">
+              <enum>QFrame::StyledPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Raised</enum>
+             </property>
+             <layout class="QHBoxLayout" name="horizontalLayout_3">
+              <item>
+               <widget class="QFrame" name="frame_5">
+                <property name="frameShape">
+                 <enum>QFrame::StyledPanel</enum>
+                </property>
+                <property name="frameShadow">
+                 <enum>QFrame::Raised</enum>
+                </property>
+                <layout class="QVBoxLayout" name="verticalLayout_10">
+                 <item>
+                  <widget class="QLineEdit" name="lne_odunc_kitap_ara">
+                   <property name="placeholderText">
+                    <string>KİTAP ARA</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QTableWidget" name="tbl_odunc_kitaplar">
+                   <property name="selectionMode">
+                    <enum>QAbstractItemView::SingleSelection</enum>
+                   </property>
+                   <property name="selectionBehavior">
+                    <enum>QAbstractItemView::SelectRows</enum>
+                   </property>
+                   <attribute name="horizontalHeaderCascadingSectionResizes">
+                    <bool>true</bool>
+                   </attribute>
+                   <attribute name="horizontalHeaderStretchLastSection">
+                    <bool>true</bool>
+                   </attribute>
+                   <column>
+                    <property name="text">
+                     <string>ID</string>
+                    </property>
+                   </column>
+                   <column>
+                    <property name="text">
+                     <string>KİTAP ADI</string>
+                    </property>
+                   </column>
+                   <column>
+                    <property name="text">
+                     <string>YAZAR</string>
+                    </property>
+                   </column>
+                   <column>
+                    <property name="text">
+                     <string>MEVCUT</string>
+                    </property>
+                   </column>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLabel" name="lbl_secili_kitap">
+                   <property name="font">
+                    <font>
+                     <weight>75</weight>
+                     <bold>true</bold>
+                    </font>
+                   </property>
+                   <property name="text">
+                    <string>Seçili Kitap: Yok</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+              <item>
+               <widget class="QFrame" name="frame_6">
+                <property name="frameShape">
+                 <enum>QFrame::StyledPanel</enum>
+                </property>
+                <property name="frameShadow">
+                 <enum>QFrame::Raised</enum>
+                </property>
+                <layout class="QVBoxLayout" name="verticalLayout_11">
+                 <item>
+                  <widget class="QLineEdit" name="lne_odunc_uye_ara">
+                   <property name="placeholderText">
+                    <string>ÜYE ARA</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QTableWidget" name="tbl_odunc_uyeler">
+                   <property name="selectionMode">
+                    <enum>QAbstractItemView::SingleSelection</enum>
+                   </property>
+                   <property name="selectionBehavior">
+                    <enum>QAbstractItemView::SelectRows</enum>
+                   </property>
+                   <attribute name="horizontalHeaderCascadingSectionResizes">
+                    <bool>true</bool>
+                   </attribute>
+                   <attribute name="horizontalHeaderStretchLastSection">
+                    <bool>true</bool>
+                   </attribute>
+                   <column>
+                    <property name="text">
+                     <string>ID</string>
+                    </property>
+                   </column>
+                   <column>
+                    <property name="text">
+                     <string>AD</string>
+                    </property>
+                   </column>
+                   <column>
+                    <property name="text">
+                     <string>SOYAD</string>
+                    </property>
+                   </column>
+                   <column>
+                    <property name="text">
+                     <string>TELEFON</string>
+                    </property>
+                   </column>
+                   <column>
+                    <property name="text">
+                     <string>BORÇ</string>
+                    </property>
+                   </column>
+                  </widget>
+                 </item>
+                 <item alignment="Qt::AlignHCenter">
+                  <widget class="QPushButton" name="btn_filtre_temizle">
+                   <property name="text">
+                    <string>SEÇİMİ TEMİZLE</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLabel" name="lbl_secili_uye">
+                   <property name="font">
+                    <font>
+                     <weight>75</weight>
+                     <bold>true</bold>
+                    </font>
+                   </property>
+                   <property name="text">
+                    <string>Seçili Üye: Yok</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item alignment="Qt::AlignHCenter">
+            <widget class="QPushButton" name="btn_odunc_ver">
+             <property name="maximumSize">
+              <size>
+               <width>500</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>ÖDÜNÇ VER</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QTableWidget" name="tbl_uye_aktif_oduncler">
+             <property name="maximumSize">
+              <size>
+               <width>800</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="selectionMode">
+              <enum>QAbstractItemView::SingleSelection</enum>
+             </property>
+             <property name="selectionBehavior">
+              <enum>QAbstractItemView::SelectRows</enum>
+             </property>
+             <attribute name="horizontalHeaderCascadingSectionResizes">
+              <bool>true</bool>
+             </attribute>
+             <attribute name="horizontalHeaderMinimumSectionSize">
+              <number>25</number>
+             </attribute>
+             <attribute name="horizontalHeaderDefaultSectionSize">
+              <number>100</number>
+             </attribute>
+             <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
+              <bool>false</bool>
+             </attribute>
+             <attribute name="horizontalHeaderStretchLastSection">
+              <bool>true</bool>
+             </attribute>
+             <attribute name="verticalHeaderMinimumSectionSize">
+              <number>30</number>
+             </attribute>
+             <attribute name="verticalHeaderDefaultSectionSize">
+              <number>30</number>
+             </attribute>
+             <attribute name="verticalHeaderShowSortIndicator" stdset="0">
+              <bool>false</bool>
+             </attribute>
+             <attribute name="verticalHeaderStretchLastSection">
+              <bool>false</bool>
+             </attribute>
+             <column>
+              <property name="text">
+               <string>KAYIT ID</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>KİTAP ADI</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>ÜYE</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>TARİHLER(BAŞLANGIÇ -&gt; BİTİŞ)</string>
+              </property>
+             </column>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="page_teslim_al">
+          <layout class="QVBoxLayout" name="verticalLayout_14">
+           <item alignment="Qt::AlignLeft">
+            <widget class="QLineEdit" name="lne_teslim_ara">
+             <property name="minimumSize">
+              <size>
+               <width>300</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="placeholderText">
+              <string>ARA</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QTableWidget" name="tbl_teslim_listesi">
+             <property name="selectionMode">
+              <enum>QAbstractItemView::SingleSelection</enum>
+             </property>
+             <property name="selectionBehavior">
+              <enum>QAbstractItemView::SelectRows</enum>
+             </property>
+             <attribute name="horizontalHeaderDefaultSectionSize">
+              <number>150</number>
+             </attribute>
+             <attribute name="horizontalHeaderStretchLastSection">
+              <bool>true</bool>
+             </attribute>
+             <column>
+              <property name="text">
+               <string>ID</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>AD</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>SOYAD</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>KİTAP ADI</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>ÖDÜNÇ TARİHİ</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>SON TESLİM TARİHİ</string>
+              </property>
+             </column>
+            </widget>
+           </item>
+           <item>
+            <widget class="QFrame" name="frame_8">
+             <property name="frameShape">
+              <enum>QFrame::StyledPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Raised</enum>
+             </property>
+             <layout class="QGridLayout" name="gridLayout">
+              <item row="5" column="0">
+               <widget class="QPushButton" name="btn_kitap_teslim_al">
+                <property name="text">
+                 <string>TESLİM AL</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <widget class="QLabel" name="lbl_teslim_kitap">
+                <property name="font">
+                 <font>
+                  <weight>75</weight>
+                  <italic>true</italic>
+                  <bold>true</bold>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>Seçim Bekleniyor...</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="0">
+               <widget class="QLabel" name="lbl_teslim_uye">
+                <property name="font">
+                 <font>
+                  <weight>75</weight>
+                  <italic>true</italic>
+                  <bold>true</bold>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>Seçim Bekleniyor...</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="0">
+               <widget class="QLabel" name="lbl_teslim_tarih_son">
+                <property name="font">
+                 <font>
+                  <weight>75</weight>
+                  <italic>true</italic>
+                  <bold>true</bold>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>Seçim Bekleniyor...</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="0">
+               <widget class="QLabel" name="lbl_teslim_tarih_verilis">
+                <property name="font">
+                 <font>
+                  <weight>75</weight>
+                  <italic>true</italic>
+                  <bold>true</bold>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>Seçim Bekleniyor...</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="page_ceza">
+          <layout class="QVBoxLayout" name="verticalLayout_15">
+           <item>
+            <widget class="QTableWidget" name="tbl_cezalar">
+             <attribute name="horizontalHeaderDefaultSectionSize">
+              <number>200</number>
+             </attribute>
+             <attribute name="horizontalHeaderStretchLastSection">
+              <bool>true</bool>
+             </attribute>
+             <column>
+              <property name="text">
+               <string>ID</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>ÜYE ADI</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>KİTAP</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>TUTAR</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>TARİH</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>AÇIKLAMA</string>
+              </property>
+             </column>
+            </widget>
+           </item>
+           <item>
+            <widget class="QWidget" name="widget" native="true">
+             <property name="minimumSize">
+              <size>
+               <width>250</width>
+               <height>300</height>
+              </size>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_13">
+              <item alignment="Qt::AlignLeft">
+               <widget class="QComboBox" name="cmb_ceza_uye">
+                <property name="minimumSize">
+                 <size>
+                  <width>200</width>
+                  <height>30</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+               </widget>
+              </item>
+              <item alignment="Qt::AlignLeft">
+               <widget class="QDateEdit" name="date_ceza_baslangic">
+                <property name="minimumSize">
+                 <size>
+                  <width>200</width>
+                  <height>30</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="calendarPopup">
+                 <bool>true</bool>
+                </property>
+                <property name="date">
+                 <date>
+                  <year>2025</year>
+                  <month>12</month>
+                  <day>28</day>
+                 </date>
+                </property>
+               </widget>
+              </item>
+              <item alignment="Qt::AlignLeft">
+               <widget class="QDateEdit" name="date_ceza_bitis">
+                <property name="minimumSize">
+                 <size>
+                  <width>200</width>
+                  <height>30</height>
+                 </size>
+                </property>
+                <property name="calendarPopup">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item alignment="Qt::AlignLeft">
+               <widget class="QPushButton" name="btn_ceza_filtrele">
+                <property name="minimumSize">
+                 <size>
+                  <width>200</width>
+                  <height>50</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string>ARA</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="lbl_ceza_toplam">
+                <property name="font">
+                 <font>
+                  <pointsize>13</pointsize>
+                  <weight>75</weight>
+                  <bold>true</bold>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>0.00 TL</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="page_rapor">
+          <layout class="QVBoxLayout" name="verticalLayout_17">
+           <item>
+            <widget class="QTabWidget" name="tabWidget">
+             <property name="layoutDirection">
+              <enum>Qt::LeftToRight</enum>
+             </property>
+             <property name="currentIndex">
+              <number>1</number>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>30</width>
+               <height>20</height>
+              </size>
+             </property>
+             <widget class="QWidget" name="tab">
+              <attribute name="title">
+               <string>ÖDÜNÇ HAREKETLERİ</string>
+              </attribute>
+              <layout class="QVBoxLayout" name="verticalLayout_16">
+               <item alignment="Qt::AlignLeft">
+                <widget class="QDateEdit" name="date_rapor_baslangic">
+                 <property name="minimumSize">
+                  <size>
+                   <width>130</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <property name="calendarPopup">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item alignment="Qt::AlignLeft">
+                <widget class="QDateEdit" name="date_rapor_bitis">
+                 <property name="minimumSize">
+                  <size>
+                   <width>130</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <property name="calendarPopup">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item alignment="Qt::AlignLeft">
+                <widget class="QComboBox" name="cmb_rapor_uye">
+                 <property name="minimumSize">
+                  <size>
+                   <width>130</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                </widget>
+               </item>
+               <item alignment="Qt::AlignLeft">
+                <widget class="QPushButton" name="btn_rapor_filtrele">
+                 <property name="minimumSize">
+                  <size>
+                   <width>130</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <property name="text">
+                  <string>FİLTRELE</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QTableWidget" name="tbl_rapor_hareket">
+                 <attribute name="horizontalHeaderMinimumSectionSize">
+                  <number>30</number>
+                 </attribute>
+                 <attribute name="horizontalHeaderDefaultSectionSize">
+                  <number>200</number>
+                 </attribute>
+                 <attribute name="horizontalHeaderStretchLastSection">
+                  <bool>true</bool>
+                 </attribute>
+                 <attribute name="verticalHeaderDefaultSectionSize">
+                  <number>30</number>
+                 </attribute>
+                 <column>
+                  <property name="text">
+                   <string>ÜYE ADI</string>
+                  </property>
+                 </column>
+                 <column>
+                  <property name="text">
+                   <string>KİTAP ADI</string>
+                  </property>
+                 </column>
+                 <column>
+                  <property name="text">
+                   <string>VERİLİŞ TARİHİ</string>
+                  </property>
+                 </column>
+                 <column>
+                  <property name="text">
+                   <string>SON TESLİM</string>
+                  </property>
+                 </column>
+                 <column>
+                  <property name="text">
+                   <string>DURUM</string>
+                  </property>
+                 </column>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+             <widget class="QWidget" name="tab_2">
+              <attribute name="title">
+               <string>GECİKEN KİTAPLAR</string>
+              </attribute>
+              <layout class="QVBoxLayout" name="verticalLayout_18">
+               <item alignment="Qt::AlignLeft">
+                <widget class="QPushButton" name="btn_rapor_geciken_yenile">
+                 <property name="minimumSize">
+                  <size>
+                   <width>130</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <property name="text">
+                  <string>LİSTEYİ YENİLE</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QTableWidget" name="tbl_rapor_geciken">
+                 <attribute name="horizontalHeaderDefaultSectionSize">
+                  <number>250</number>
+                 </attribute>
+                 <attribute name="horizontalHeaderStretchLastSection">
+                  <bool>true</bool>
+                 </attribute>
+                 <column>
+                  <property name="text">
+                   <string>ÜYE ADI</string>
+                  </property>
+                 </column>
+                 <column>
+                  <property name="text">
+                   <string>KİTAP ADI</string>
+                  </property>
+                 </column>
+                 <column>
+                  <property name="text">
+                   <string>VERİLİŞ TARİHİ</string>
+                  </property>
+                 </column>
+                 <column>
+                  <property name="text">
+                   <string>SON TESLİM</string>
+                  </property>
+                 </column>
+                 <column>
+                  <property name="text">
+                   <string>GECİKME GÜNÜ</string>
+                  </property>
+                 </column>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+             <widget class="QWidget" name="tab_3">
+              <attribute name="title">
+               <string>POPÜLER KİTAPLAR</string>
+              </attribute>
+              <layout class="QVBoxLayout" name="verticalLayout_19">
+               <item alignment="Qt::AlignLeft">
+                <widget class="QPushButton" name="btn_rapor_populer_yenile">
+                 <property name="minimumSize">
+                  <size>
+                   <width>130</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <property name="text">
+                  <string>İSTATİSTİKLERİ GETİR</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QTableWidget" name="tbl_rapor_populer">
+                 <attribute name="horizontalHeaderMinimumSectionSize">
+                  <number>30</number>
+                 </attribute>
+                 <attribute name="horizontalHeaderDefaultSectionSize">
+                  <number>250</number>
+                 </attribute>
+                 <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
+                  <bool>false</bool>
+                 </attribute>
+                 <attribute name="horizontalHeaderStretchLastSection">
+                  <bool>true</bool>
+                 </attribute>
+                 <attribute name="verticalHeaderVisible">
+                  <bool>true</bool>
+                 </attribute>
+                 <attribute name="verticalHeaderCascadingSectionResizes">
+                  <bool>false</bool>
+                 </attribute>
+                 <column>
+                  <property name="text">
+                   <string>KİTAP ADI</string>
+                  </property>
+                 </column>
+                 <column>
+                  <property name="text">
+                   <string>YAZAR</string>
+                  </property>
+                 </column>
+                 <column>
+                  <property name="text">
+                   <string>ÖDÜNÇ SAYISI</string>
+                  </property>
+                 </column>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+             <widget class="QWidget" name="tab_4">
+              <attribute name="title">
+               <string>EN AKTİF ÜYELER</string>
+              </attribute>
+              <layout class="QVBoxLayout" name="verticalLayout_20">
+               <item alignment="Qt::AlignLeft">
+                <widget class="QPushButton" name="btn_rapor_aktif_yenile">
+                 <property name="minimumSize">
+                  <size>
+                   <width>130</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <property name="text">
+                  <string>LİSTEYİ YENİLE</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QTableWidget" name="tbl_rapor_aktif">
+                 <attribute name="horizontalHeaderDefaultSectionSize">
+                  <number>250</number>
+                 </attribute>
+                 <attribute name="horizontalHeaderStretchLastSection">
+                  <bool>true</bool>
+                 </attribute>
+                 <column>
+                  <property name="text">
+                   <string>ÜYE ADI</string>
+                  </property>
+                 </column>
+                 <column>
+                  <property name="text">
+                   <string>TELEFON</string>
+                  </property>
+                 </column>
+                 <column>
+                  <property name="text">
+                   <string>İŞLEM SAYISI</string>
+                  </property>
+                 </column>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+             <widget class="QWidget" name="tab_5">
+              <attribute name="title">
+               <string>EN ÇOK CEZA ALAN ÜYELER</string>
+              </attribute>
+              <layout class="QVBoxLayout" name="verticalLayout_21">
+               <item alignment="Qt::AlignLeft">
+                <widget class="QPushButton" name="btn_rapor_ceza_yenile">
+                 <property name="minimumSize">
+                  <size>
+                   <width>130</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <property name="text">
+                  <string>LİSTEYİ YENİLE</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QTableWidget" name="tbl_rapor_ceza_istatistik">
+                 <attribute name="horizontalHeaderDefaultSectionSize">
+                  <number>250</number>
+                 </attribute>
+                 <attribute name="horizontalHeaderStretchLastSection">
+                  <bool>true</bool>
+                 </attribute>
+                 <column>
+                  <property name="text">
+                   <string>ÜYE ADI</string>
+                  </property>
+                 </column>
+                 <column>
+                  <property name="text">
+                   <string>CEZA ADEDİ</string>
+                  </property>
+                 </column>
+                 <column>
+                  <property name="text">
+                   <string>TOPLAM TUTAR</string>
+                  </property>
+                 </column>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="page_sorgu">
+          <widget class="QTableWidget" name="tbl_sorgu_sonuc">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>380</y>
+             <width>821</width>
+             <height>341</height>
+            </rect>
+           </property>
+           <attribute name="horizontalHeaderMinimumSectionSize">
+            <number>30</number>
+           </attribute>
+           <attribute name="horizontalHeaderDefaultSectionSize">
+            <number>200</number>
+           </attribute>
+           <attribute name="horizontalHeaderStretchLastSection">
+            <bool>true</bool>
+           </attribute>
+           <column>
+            <property name="text">
+             <string>KİTAP ADI</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>YAZAR</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>KATEGORİ</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>YIL</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string/>
+            </property>
+           </column>
+          </widget>
+          <widget class="QGroupBox" name="groupBox_2">
+           <property name="geometry">
+            <rect>
+             <x>20</x>
+             <y>10</y>
+             <width>381</width>
+             <height>321</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="title">
+            <string>🔍 ARAMA KRİTERLERİ </string>
+           </property>
+           <widget class="QFrame" name="frame_9">
+            <property name="geometry">
+             <rect>
+              <x>10</x>
+              <y>40</y>
+              <width>351</width>
+              <height>271</height>
+             </rect>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Raised</enum>
+            </property>
+            <widget class="QCheckBox" name="chk_sorgu_stok">
+             <property name="geometry">
+              <rect>
+               <x>10</x>
+               <y>220</y>
+               <width>151</width>
+               <height>41</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>STOKTA OLANLAR</string>
+             </property>
+            </widget>
+            <widget class="QComboBox" name="cmb_sorgu_kategori">
+             <property name="geometry">
+              <rect>
+               <x>180</x>
+               <y>30</y>
+               <width>141</width>
+               <height>31</height>
+              </rect>
+             </property>
+            </widget>
+            <widget class="QLineEdit" name="txt_sorgu_yazar">
+             <property name="geometry">
+              <rect>
+               <x>10</x>
+               <y>56</y>
+               <width>111</width>
+               <height>31</height>
+              </rect>
+             </property>
+             <property name="placeholderText">
+              <string>YAZAR</string>
+             </property>
+            </widget>
+            <widget class="QLineEdit" name="txt_sorgu_kitap">
+             <property name="geometry">
+              <rect>
+               <x>10</x>
+               <y>10</y>
+               <width>111</width>
+               <height>31</height>
+              </rect>
+             </property>
+             <property name="placeholderText">
+              <string>KİTAP ADI</string>
+             </property>
+            </widget>
+            <widget class="QGroupBox" name="groupBox_3">
+             <property name="geometry">
+              <rect>
+               <x>10</x>
+               <y>90</y>
+               <width>141</width>
+               <height>121</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <italic>true</italic>
+              </font>
+             </property>
+             <property name="title">
+              <string>BASIM YILI ARALIĞI</string>
+             </property>
+             <widget class="QSpinBox" name="spin_sorgu_min">
+              <property name="geometry">
+               <rect>
+                <x>20</x>
+                <y>30</y>
+                <width>81</width>
+                <height>31</height>
+               </rect>
+              </property>
+              <property name="maximum">
+               <number>2030</number>
+              </property>
+             </widget>
+             <widget class="QSpinBox" name="spin_sorgu_max">
+              <property name="geometry">
+               <rect>
+                <x>20</x>
+                <y>70</y>
+                <width>81</width>
+                <height>31</height>
+               </rect>
+              </property>
+              <property name="maximum">
+               <number>2030</number>
+              </property>
+             </widget>
+            </widget>
+            <widget class="QPushButton" name="btn_sorgu_temizle">
+             <property name="geometry">
+              <rect>
+               <x>190</x>
+               <y>230</y>
+               <width>151</width>
+               <height>31</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>SEÇİMLERİ KALDIR</string>
+             </property>
+            </widget>
+           </widget>
+          </widget>
+          <widget class="QGroupBox" name="groupBox_4">
+           <property name="geometry">
+            <rect>
+             <x>430</x>
+             <y>100</y>
+             <width>251</width>
+             <height>171</height>
+            </rect>
+           </property>
+           <property name="title">
+            <string>⚙️  SIRALAMA VE İŞLEMLER</string>
+           </property>
+           <widget class="QComboBox" name="cmb_sorgu_sirala">
+            <property name="geometry">
+             <rect>
+              <x>10</x>
+              <y>30</y>
+              <width>121</width>
+              <height>31</height>
+             </rect>
+            </property>
+            <property name="placeholderText">
+             <string/>
+            </property>
+            <item>
+             <property name="text">
+              <string>KİTAP ADI</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>YAZAR</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>BASIM YILI</string>
+             </property>
+            </item>
+           </widget>
+           <widget class="QComboBox" name="cmb_sorgu_yon">
+            <property name="geometry">
+             <rect>
+              <x>10</x>
+              <y>70</y>
+              <width>121</width>
+              <height>31</height>
+             </rect>
+            </property>
+            <item>
+             <property name="text">
+              <string>Artan (A-Z)</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Azalan (Z-A)</string>
+             </property>
+            </item>
+           </widget>
+           <widget class="QPushButton" name="btn_sorgu_bul">
+            <property name="geometry">
+             <rect>
+              <x>10</x>
+              <y>130</y>
+              <width>111</width>
+              <height>31</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string>ARA</string>
+            </property>
+           </widget>
+           <widget class="QPushButton" name="btn_sorgu_excel">
+            <property name="geometry">
+             <rect>
+              <x>130</x>
+              <y>130</y>
+              <width>111</width>
+              <height>31</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string>EXCEL'E AT</string>
+            </property>
+           </widget>
+          </widget>
+          <widget class="QLabel" name="lbl_sonuc_sayisi">
+           <property name="geometry">
+            <rect>
+             <x>10</x>
+             <y>350</y>
+             <width>281</width>
+             <height>16</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <weight>75</weight>
+             <italic>true</italic>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>Sonuç bekleniyor...</string>
+           </property>
+          </widget>
+         </widget>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1610</width>
+     <height>24</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
