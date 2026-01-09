@@ -29,7 +29,7 @@ DELIMITER $$
 --
 -- Yordamlar
 --
-CREATE DEFINER PROCEDURE `sp_KitapAra` (IN `p_kriter` VARCHAR(50), IN `p_aranan` VARCHAR(255))   BEGIN
+CREATE PROCEDURE `sp_KitapAra` (IN `p_kriter` VARCHAR(50), IN `p_aranan` VARCHAR(255))   BEGIN
     
     IF p_kriter = 'Genel' THEN
         SELECT * FROM KITAP 
@@ -45,7 +45,7 @@ CREATE DEFINER PROCEDURE `sp_KitapAra` (IN `p_kriter` VARCHAR(50), IN `p_aranan`
     END IF;
 END$$
 
-CREATE DEFINER PROCEDURE `sp_KitapEkleVeyaGuncelle` (IN `p_ID` INT, IN `p_Ad` VARCHAR(255), IN `p_Yazar` VARCHAR(255), IN `p_Yayinevi` VARCHAR(255), IN `p_Yil` INT, IN `p_KategoriID` INT, IN `p_Stok` INT)   BEGIN
+CREATE PROCEDURE `sp_KitapEkleVeyaGuncelle` (IN `p_ID` INT, IN `p_Ad` VARCHAR(255), IN `p_Yazar` VARCHAR(255), IN `p_Yayinevi` VARCHAR(255), IN `p_Yil` INT, IN `p_KategoriID` INT, IN `p_Stok` INT)   BEGIN
     IF p_ID = 0 THEN
         -- Yeni Kayıt
         INSERT INTO KITAP (KitapAdi, Yazar, Yayinevi, BasimYili, KategoriID, MevcutAdet, ToplamAdet)
@@ -65,7 +65,7 @@ CREATE DEFINER PROCEDURE `sp_KitapEkleVeyaGuncelle` (IN `p_ID` INT, IN `p_Ad` VA
     END IF;
 END$$
 
-CREATE DEFINER PROCEDURE `sp_KitapTeslimAl` (IN `p_OduncID` INT, IN `p_TeslimTarihi` DATE)   BEGIN
+CREATE PROCEDURE `sp_KitapTeslimAl` (IN `p_OduncID` INT, IN `p_TeslimTarihi` DATE)   BEGIN
     DECLARE v_SonTeslimTarihi DATE;
     DECLARE v_UyeID INT;
     DECLARE v_GecikmeGun INT;
@@ -86,7 +86,7 @@ CREATE DEFINER PROCEDURE `sp_KitapTeslimAl` (IN `p_OduncID` INT, IN `p_TeslimTar
     COMMIT;
 END$$
 
-CREATE DEFINER PROCEDURE `sp_UyeOzetRapor` (IN `p_UyeID` INT)   BEGIN
+CREATE PROCEDURE `sp_UyeOzetRapor` (IN `p_UyeID` INT)   BEGIN
     SELECT 
         CONCAT(U.Ad, ' ', U.Soyad) as AdSoyad,
         
@@ -100,7 +100,7 @@ CREATE DEFINER PROCEDURE `sp_UyeOzetRapor` (IN `p_UyeID` INT)   BEGIN
     WHERE U.ID = p_UyeID;
 END$$
 
-CREATE DEFINER PROCEDURE `sp_YeniOduncVer` (IN `p_UyeID` INT, IN `p_KitapID` INT, IN `p_PersonelID` INT)   BEGIN 
+CREATE PROCEDURE `sp_YeniOduncVer` (IN `p_UyeID` INT, IN `p_KitapID` INT, IN `p_PersonelID` INT)   BEGIN 
     DECLARE v_MevcutStok INT;
     DECLARE v_UyeKitapSayisi INT;
     
