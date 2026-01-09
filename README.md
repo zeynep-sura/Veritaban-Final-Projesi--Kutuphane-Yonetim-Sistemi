@@ -1,1 +1,1 @@
-# Veritaban-Final-Projesi--K-t-phane-Y-netim-Sistemi
+# Veritaban-Final-Projesi--Kutuphane-Yonetim-Sistemi
