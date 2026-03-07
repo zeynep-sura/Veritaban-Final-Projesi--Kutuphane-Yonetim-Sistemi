@@ -12,7 +12,7 @@ Bu proje, Python ve MySQL kullanılarak geliştirilmiş kapsamlı bir kütüphan
 * Kullanıcı deneyimini iyileştirmek ve işlem hızını artırmak amacıyla arayüz genelinde yön tuşları ile
 navigasyon ve Enter tuşu ile hızlı seçim yapma özellikleri sisteme entegre edilmiştir.
 
-### İlgili Görseller
+### Detaylar ve İlgili Görseller
 
 **Giriş Ekranı:**
 
