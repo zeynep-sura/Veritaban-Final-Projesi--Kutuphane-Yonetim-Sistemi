@@ -21,7 +21,9 @@ Solda sabit bir şekilde duran butonlar ile ekranlar arası geçiş yapılır.
 
 ![uye bilgisi](uyebilgisi.png)
 
+
 **Kitap Yönetim Ekranı**
+
 ![kitapyonetim](kitapekrani.png)
 
 **Ödünç İşlemleri:**
