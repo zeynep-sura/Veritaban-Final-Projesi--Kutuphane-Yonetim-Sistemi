@@ -1,4 +1,4 @@
-# Veritabanı Final Projesi: Kütüphane Yönetim Sistemi
+# Kütüphane Yönetim Sistemi
 
 Bu proje, Python ve MySQL kullanılarak geliştirilmiş kapsamlı bir kütüphane yönetim otomasyonudur.
 
@@ -8,4 +8,8 @@ Bu proje, Python ve MySQL kullanılarak geliştirilmiş kapsamlı bir kütüphan
 * **veritabani.py:** Veritabanı bağlantı ve sorgu fonksiyonları.
 * **kutuphaneOtomasyonu.sql:** Tablolar, Trigger'lar ve Stored Procedure'leri içeren veritabanı kurulum dosyası.
 * **.ui Dosyaları:** Qt Designer ile tasarlanmış kullanıcı arayüzü dosyaları.
+
+* ###İlgili Görseller
+
+* 
 
