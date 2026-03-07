@@ -1,4 +1,4 @@
-# Kütüphane Yönetim Sistemi
+# Kütüphane Yönetim Sistemi 📚
 
 Bu proje, Python ve MySQL kullanılarak geliştirilmiş kapsamlı bir kütüphane yönetim otomasyonudur.
 
@@ -47,3 +47,5 @@ Solda sabit bir şekilde duran butonlar ile ekranlar arası geçiş yapılır.
 
 ![dinamiksorgu](dinamiksorgu.png)
 ![excel](excel.png)
+
+![cikti](cikti.png)
