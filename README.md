@@ -11,33 +11,33 @@ Bu proje, Python ve MySQL kullanılarak geliştirilmiş kapsamlı bir kütüphan
 
 ### İlgili Görseller
 
-Giriş Ekranı:
+**Giriş Ekranı:**
 
 ![giris ekrani](girişekrani.png)
 
 Solda sabit bir şekilde duran butonlardan ekranlar arası geçiş yapılır.
 
-Üye Bilgisi Ekranı:
+**Üye Bilgisi Ekranı:**
 
 ![uye bilgisi](uyebilgisi.png)
 
-Kitap Yönetim Ekranı:
+**Kitap Yönetim Ekranı:**
 
 ![kitap yönetim](kitapteslim.png)
 
-Ödünç İşlemleri:
+**Ödünç İşlemleri:**
 
 ![odunc islemleri](oduncislemleri.png)
 
-Ceza İşlemleri: 
+**Ceza İşlemleri:**
 
 ![ceza](ceza.png)
 
-Statik sorgu ekranı:
+**Statik Sorgu Ekranı:**
 
 ![sorgu](statiksorgu.png)
 
-Dinamik sorgu ve excel çıktısı:
+**Dinamik Sorgu ve Excel Çıktısı:**
 
 ![dinamiksorgu](dinamiksorgu.png)
 ![excel](excel.png)
