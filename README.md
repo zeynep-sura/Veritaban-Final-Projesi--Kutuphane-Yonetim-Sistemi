@@ -15,7 +15,7 @@ Bu proje, Python ve MySQL kullanılarak geliştirilmiş kapsamlı bir kütüphan
 
 ![giris ekrani](girişekrani.png)
 
-Solda sabit bir şekilde duran butonlardan ekranlar arası geçiş yapılır.
+Solda sabit bir şekilde duran butonlar ile ekranlar arası geçiş yapılır.
 
 **Üye Bilgisi Ekranı:**
 
